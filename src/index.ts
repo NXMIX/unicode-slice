@@ -16,7 +16,7 @@ const getEndCode = (escCode: string) => {
   } else if (escCode.startsWith("48")) {
     return "49";
   } else {
-    return ansiStyles.codes.get(parseInt(escCode, 10)).toString();
+    return (ansiStyles.codes.get(parseInt(escCode, 10)) || "39").toString();
   }
 };
 
@@ -62,7 +62,8 @@ const slice = (str: string, begin: number, end?: number) => {
     const x = arr[i];
     if (ESCAPES.includes(x)) {
       insideEscape = true;
-      escapeCode = /\d[^m]*/.exec(str.slice(i, i + 32))[0];
+      const m = /\d[^m]*/.exec(str.slice(i, i + 32));
+      escapeCode = m ? m[0] : undefined;
       continue;
     } else if (insideEscape) {
       if (x === "m") {
@@ -79,7 +80,7 @@ const slice = (str: string, begin: number, end?: number) => {
             tmp = "";
           }
           if (escapeCode === getEndCode(current.code)) {
-            current = current.parent;
+            current = current.parent!;
           } else {
             const newNode = new Node(current, escapeCode);
             current = newNode;
