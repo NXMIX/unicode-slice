@@ -117,7 +117,7 @@ const slice = (str: string, begin: number, end?: number) => {
     }
 
     if (node.type === "code") {
-      out = wrapAnsi(node.code) + out + wrapAnsi(getEndCode(node.code));
+      out = wrapAnsi(node.code!) + out + wrapAnsi(getEndCode(node.code!));
     } else {
       out = out + node.text || "";
     }
