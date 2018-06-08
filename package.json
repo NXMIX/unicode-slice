@@ -1,9 +1,13 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "name": "unicode-slice",
   "description": "Slice a unicode string by it's visual width",
   "main": "dist/index.js",
   "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NXMIX/unicode-slice.git"
+  },
   "files": [
     "dist"
   ],
@@ -18,8 +22,18 @@
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "commit": "git-cz",
     "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "precommit": "lint-staged"
+    "semantic-release-prepare": "ts-node-dev tools/semantic-release-prepare",
+    "precommit": "lint-staged",
+    "commitmsg": "validate-commit-msg",
+    "prepush": "npm run test:prod && npm run build",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush",
+      "commit-msg": "npm run commitmsg"
+    }
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -76,13 +90,15 @@
     "lint-staged": "^7.1.3",
     "prettier": "^1.13.4",
     "rimraf": "^2.6.2",
-    "semantic-release": "^15.5.0",
+    "semantic-release": "^15.5.1",
     "ts-jest": "^22.4.6",
+    "ts-node-dev": "^1.0.0-pre.26",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.9.1",
-    "validate-commit-msg": "^2.14.0"
+    "validate-commit-msg": "^2.14.0",
+    "travis-deploy-once": "^5.0.0"
   },
   "dependencies": {
     "@nxmix/emoji-seq-match": "^0.1.0",
