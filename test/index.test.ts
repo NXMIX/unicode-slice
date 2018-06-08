@@ -105,7 +105,6 @@ describe("suite 1", () => {
     });
 
     it("normal+ansi", () => {
-      console.log([...slice("12" + chalk.red("34") + "56", 1, 5)]);
       expect(slice("12" + chalk.red("34") + "56", 1, 5)).toBe("2" + chalk.red("34") + "5");
     });
   });
