@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0-development",
+  "version": "0.1.0-development",
   "name": "unicode-slice",
   "description": "Slice a unicode string by it's visual width",
   "main": "dist/index.js",
