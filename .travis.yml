@@ -1,9 +1,17 @@
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 node_js:
-  - '10'
+  - '9'
   - '8'
   - '6'
 script:
-  - npm run test:prod
-after_script:
-  - npm run report-coverage
+  - npm run test:prod && npm run build
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
+  only:
+    - master
