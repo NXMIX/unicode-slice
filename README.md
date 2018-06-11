@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/NXMIX/unicode-slice.svg?branch=master)](https://travis-ci.org/NXMIX/unicode-slice)
 [![Coverage Status](https://coveralls.io/repos/github/NXMIX/unicode-slice/badge.svg)](https://coveralls.io/github/NXMIX/unicode-slice)
-[![npm](https://img.shields.io/npm/v/unicode-slice.svg?maxAge=1000)](https://www.npmjs.com/package/unicode-slice/)
+[![npm](https://img.shields.io/npm/v/unicode-slice.svg?maxAge=1000)](https://www.npmjs.com/package/unicode-slice/) [![Greenkeeper badge](https://badges.greenkeeper.io/NXMIX/unicode-slice.svg)](https://greenkeeper.io/)
 
 > Slice a unicode string by it's visual width
 
