@@ -7,9 +7,10 @@ import ansiStyles = require("ansi-styles");
 // Utilities
 import matchEmoji from "@nxmix/emoji-seq-match";
 
-const ESCAPES = ["\u001B", "\u009B"];
+const ESCAPE = "\u001B";
+const ESCRE = /\x1b\[((?:\d*)(?:;\d*)*)(?:m)/;
 
-const wrapAnsi = (escCode: string) => `${ESCAPES[0]}[${escCode}m`;
+const wrapAnsi = (escCode: string) => `${ESCAPE}[${escCode}m`;
 const getEndCode = (escCode: string) => {
   if (escCode.startsWith("38")) {
     return "39";
@@ -51,8 +52,6 @@ const slice = (str: string, begin: number, end?: number) => {
     throw new Error("Parameters 'begin' and 'end' do not support negative values");
   }
 
-  let insideEscape = false;
-  let escapeCode;
   let visible = 0;
   let tmp = "";
 
@@ -60,13 +59,12 @@ const slice = (str: string, begin: number, end?: number) => {
   let current = root;
   for (let i = 0; i < arr.length; i++) {
     const x = arr[i];
-    if (ESCAPES.includes(x)) {
-      insideEscape = true;
-      const m = /\d[^m]*/.exec(str.slice(i, i + 32));
-      escapeCode = m ? m[0] : undefined;
-      continue;
-    } else if (insideEscape) {
-      if (x === "m") {
+    if (x === ESCAPE) {
+      const escSeq = arr.slice(i, Math.min(i + 32, arr.length)).join("");
+      const m = escSeq.match(ESCRE);
+      if (m) {
+        // 如果匹配上，就直接提取 code
+        const escapeCode = m[1];
         if (!current.code) {
           if (tmp) {
             const newNode = new Node(current, undefined, tmp);
@@ -80,15 +78,17 @@ const slice = (str: string, begin: number, end?: number) => {
             tmp = "";
           }
           if (escapeCode === getEndCode(current.code)) {
+            // close current node then move up
             current = current.parent!;
           } else {
+            // create a new child node then set it as current
             const newNode = new Node(current, escapeCode);
             current = newNode;
           }
         }
-        insideEscape = false;
+        i += m[0].length - 1;
+        continue;
       }
-      continue;
     }
 
     visible += 1;
@@ -117,10 +117,9 @@ const slice = (str: string, begin: number, end?: number) => {
       out += iter(children[i]);
     }
 
+    out = out + node.text || "";
     if (node.type === "code") {
       out = wrapAnsi(node.code!) + out + wrapAnsi(getEndCode(node.code!));
-    } else {
-      out = out + node.text || "";
     }
     return out;
   };
