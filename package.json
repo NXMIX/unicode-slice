@@ -21,7 +21,7 @@
     "test:watch": "jest --watchAll",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "commit": "git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node-dev tools/semantic-release-prepare",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
