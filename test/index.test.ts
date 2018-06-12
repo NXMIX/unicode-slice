@@ -1,6 +1,8 @@
 import chalk from "chalk";
 import slice from "../src";
 
+const ESC = "\x1b";
+
 describe("suite 1", () => {
   describe("ascii", () => {
     it("ascii", () => {
@@ -106,6 +108,26 @@ describe("suite 1", () => {
 
     it("normal+ansi", () => {
       expect(slice("12" + chalk.red("34") + "56", 1, 5)).toBe("2" + chalk.red("34") + "5");
+    });
+  });
+
+  describe("malformed ansi", () => {
+    it("missing close", () => {
+      expect(slice("12" + ESC + "[31m" + "34", 0)).toBe("12" + chalk.red("34"));
+    });
+
+    it("undefined code", () => {
+      const openCode = ESC + "[71m";
+      const closeCode = ESC + "[39m";
+      expect(slice(openCode + "12", 0)).toBe(openCode + "12" + closeCode);
+    });
+
+    it("malformed open code", () => {
+      const openCode = ESC + "[a";
+      const content = openCode + "12";
+      expect(slice(content, 0)).toBe(openCode + "12");
+      expect(slice(content, 0, 1)).toBe("\u001b");
+      expect(slice("before" + content, 0)).toBe("before" + openCode + "12");
     });
   });
 });
