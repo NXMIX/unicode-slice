@@ -3,6 +3,8 @@ import slice from "../src";
 
 const ESC = "\x1b";
 
+chalk.enabled = true;
+
 describe("suite 1", () => {
   describe("ascii", () => {
     it("ascii", () => {
