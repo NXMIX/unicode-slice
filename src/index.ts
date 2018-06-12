@@ -1,6 +1,3 @@
-// Native
-import { inspect } from "util";
-
 // Packages
 import ansiStyles = require("ansi-styles");
 
@@ -67,13 +64,14 @@ const slice = (str: string, begin: number, end?: number) => {
         const escapeCode = m[1];
         if (!current.code) {
           if (tmp) {
+            // tslint:disable-next-line no-unused-variable
             const newNode = new Node(current, undefined, tmp);
             tmp = "";
           }
-          const newNode = new Node(current, escapeCode);
-          current = newNode;
+          current = new Node(current, escapeCode);
         } else {
           if (tmp) {
+            // tslint:disable-next-line no-unused-variable
             const newNode = new Node(current, undefined, tmp);
             tmp = "";
           }
@@ -82,8 +80,7 @@ const slice = (str: string, begin: number, end?: number) => {
             current = current.parent!;
           } else {
             // create a new child node then set it as current
-            const newNode = new Node(current, escapeCode);
-            current = newNode;
+            current = new Node(current, escapeCode);
           }
         }
         i += m[0].length - 1;
