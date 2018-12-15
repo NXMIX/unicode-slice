@@ -100,7 +100,7 @@
     "tslint-config-standard": "^8.0.0",
     "typescript": "^2.9.1",
     "validate-commit-msg": "^2.14.0",
-    "travis-deploy-once": "^5.0.0"
+    "travis-deploy-once": "^5.0.11"
   },
   "dependencies": {
     "@nxmix/emoji-seq-match": "^1.0.0",
