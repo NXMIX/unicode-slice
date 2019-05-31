@@ -104,6 +104,6 @@
   },
   "dependencies": {
     "@nxmix/emoji-seq-match": "^1.0.0",
-    "ansi-styles": "^3.2.1"
+    "ansi-styles": "^4.0.0"
   }
 }
