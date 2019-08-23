@@ -94,7 +94,7 @@
     "rimraf": "^2.6.2",
     "semantic-release": "^15.5.1",
     "ts-jest": "^23.0.0",
-    "ts-node-dev": "^1.0.0-pre.26",
+    "ts-node-dev": "^1.0.0-pre.42",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-config-standard": "^8.0.0",
