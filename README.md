@@ -2,21 +2,20 @@
 
 [![Build Status](https://travis-ci.org/NXMIX/unicode-slice.svg?branch=master)](https://travis-ci.org/NXMIX/unicode-slice)
 [![Coverage Status](https://coveralls.io/repos/github/NXMIX/unicode-slice/badge.svg)](https://coveralls.io/github/NXMIX/unicode-slice)
-[![npm](https://img.shields.io/npm/v/@nxmix/unicode-slice.svg?maxAge=1000)](https://www.npmjs.com/package/@nxmix/unicode-slice/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/NXMIX/unicode-slice.svg)](https://greenkeeper.io/)
+[![npm](https://img.shields.io/npm/v/unicode-slice.svg?maxAge=1000)](https://www.npmjs.com/package/unicode-slice/)
 
 > Slice a unicode string by it's visual width
 
 ### Install
 
-`npm i @nxmix/emoji-seq-match --save`
+`npm i unicode-slice --save`
 
 [Typescript](https://www.typescriptlang.org) definition file is already included.
 
 ### EXAMPLES
 
 ```js
-const slice = require('@nxmix/unicode-slice').default;
+const slice = require('unicode-slice').default;
 
 // String.prototype.slice
 "👶🏽".slice(0, 1);
