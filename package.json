@@ -11,6 +11,10 @@
   "files": [
     "dist"
   ],
+  "engines" : {
+    "node" : ">=8.0.0",
+    "npm": ">=6.0.0"
+  },
   "author": "jacobbubu <rong.shen@gmail.com>",
   "scripts": {
     "lint": "tslint -p tsconfig.json -t codeFrame 'src/**/*.ts'",
