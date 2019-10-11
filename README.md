@@ -37,7 +37,7 @@ slice("12" + chalk.red("34") + "56", 1, 5);
 Using ES2015w Modules:
 
 ```ts
-import slice from '@nxmix/unicode-slice';
+import slice from 'unicode-slice';
 
 slice('👶🏽', 0, 1);
 ```
