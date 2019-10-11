@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - '8'
 notifications:
-  email: false
+  email:
+    - rong.shen@gmail.com
 script:
   - npm run test:prod && npm run build
 after_success:
@@ -12,4 +13,4 @@ after_script:
 branches:
   only:
     - master
-    - /^greenkeeper/.*$/
+
